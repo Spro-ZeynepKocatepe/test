@@ -1,0 +1,124 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Kalem',
+    typeNamePlural: 'Kalemler',
+    title: { type: #STANDARD, value: 'DocumentItemText' },
+    description: { type: #STANDARD, value: 'DocumentItemText' }
+}
+@UI.textArrangement: #TEXT_LAST
+annotate entity ZFI_I_XRDI with
+{
+  @UI.facet: [{
+    label: 'Kalemler',
+    id: 'ItemInfo',
+    type: #IDENTIFICATION_REFERENCE,
+    position: 10,
+    targetQualifier: 'ItemInfo'
+  }]
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10, qualifier: 'ItemInfo' }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'I_DebitCreditCode', element: 'DebitCreditCode' }
+  }]
+  DebitCreditCode;
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20, qualifier: 'ItemInfo' }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'ZFI_I_GLACCOUNT_VH', element: 'GLAccount' }
+  }]
+  GLAccount;
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30, qualifier: 'ItemInfo' }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'I_Customer_VH', element: 'Customer' }
+  }]
+  Customer;
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40, qualifier: 'ItemInfo' }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'I_Supplier_VH', element: 'Supplier' }
+  }]
+  Supplier;
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50, qualifier: 'ItemInfo' }]
+  DebitAmount;
+  @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 60, qualifier: 'ItemInfo' }]
+  CreditAmount;
+  @UI.lineItem: [{ position: 70 }]
+  @UI.identification: [{ position: 70, qualifier: 'ItemInfo' }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'I_TaxCodeValueHelp', element: 'TaxCode' }
+  }]
+  TaxCode;
+  @UI.lineItem: [{ position: 80 }]
+  @UI.identification: [{ position: 80, qualifier: 'ItemInfo' }]
+  AmountInCompanyCode1;
+  @UI.lineItem: [{ position: 90 }]
+  @UI.identification: [{ position: 90, qualifier: 'ItemInfo' }]
+  AmountInLocalCurrency1;
+  @UI.lineItem: [{ position: 100 }]
+  @UI.identification: [{ position: 100, qualifier: 'ItemInfo' }]
+  AmountInLocalCurrency2;
+  @UI.lineItem: [{ position: 110 }]
+  @UI.identification: [{ position: 110, qualifier: 'ItemInfo' }]
+  DocumentItemText;
+  @UI.lineItem: [{ position: 120 }]
+  @UI.identification: [{ position: 120, qualifier: 'ItemInfo' }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'I_CostCenterStdVH', element: 'CostCenter' }
+  }]
+  CostCenter;
+  @UI.lineItem: [{ position: 130 }]
+  @UI.identification: [{ position: 130, qualifier: 'ItemInfo' }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'I_ProfitCenterStdVH', element: 'ProfitCenter' }
+  }]
+  ProfitCenter;
+  @UI.lineItem: [{ position: 140 }]
+  @UI.identification: [{ position: 140, qualifier: 'ItemInfo' }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'I_SegmentStdVH', element: 'Segment' }
+  }]
+  Segment;
+  @UI.lineItem: [{ position: 150 }]
+  @UI.identification: [{ position: 150, qualifier: 'ItemInfo' }]
+  WBSElement;
+  @UI.lineItem: [{ position: 160 }]
+  @UI.identification: [{ position: 160, qualifier: 'ItemInfo' }]
+  AssignmentReference;
+  @UI.hidden: true
+  Currency;
+  @UI.hidden: true
+  CompanyCodeCurrency1;
+  @UI.hidden: true
+  LocalCurrency1;
+  @UI.hidden: true
+  LocalCurrency2;
+  @UI.hidden: true
+  _GLAccount;
+  @UI.hidden: true
+  _Customer;
+  @UI.hidden: true
+  _Supplier;
+  @UI.hidden: true
+  _DebitCreditCode;
+  @UI.hidden: true
+  _Currency;
+  @UI.hidden: true
+  _CompanyCodeCurrency1;
+  @UI.hidden: true
+  _LocalCurrency1;
+  @UI.hidden: true
+  _LocalCurrency2;
+  @UI.hidden: true
+  _TaxCode;
+  @UI.hidden: true
+  _CostCenter;
+  @UI.hidden: true
+  _ProfitCenter;
+  @UI.hidden: true
+  _Segment;
+  @UI.hidden: false
+  _Header;
+}

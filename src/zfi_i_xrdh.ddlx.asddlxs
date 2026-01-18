@@ -1,0 +1,136 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Kur farkı faturası',
+    typeNamePlural: 'Kur farkı faturaları',
+    title: { type: #STANDARD, value: 'AccountingDocumentFormatted' },
+    description: { type: #STANDARD, value: 'TransactionUUID' }
+}
+@UI.textArrangement: #TEXT_LAST
+annotate entity ZFI_I_XRDH with
+{
+  @UI.facet: [{
+    label: 'Genel Bilgiler',
+    id: 'GeneralInfo',
+    type: #IDENTIFICATION_REFERENCE,
+    position: 10,
+    targetQualifier: 'GeneralInfo'
+  },
+  {
+    label: 'Belgeler',
+    id: 'DocumentInfo',
+    type: #FIELDGROUP_REFERENCE,
+    position: 20,
+    targetQualifier: 'DocumentInfo',
+    hidden: #(NoAccountingDocument)
+  },
+  {
+    label: 'Kalemler',
+    id: 'ItemInfo',
+    type: #LINEITEM_REFERENCE,
+    position: 30,
+    targetElement: '_Item'
+  }]
+  @UI.lineItem: [{ position: 10 },
+                 { type: #FOR_ACTION, dataAction: 'currencyClearing', label: 'Geri Çekme', emphasized: true },
+                 { type: #FOR_ACTION, dataAction: 'reverseXRDifference', label: 'Ters Kayıt', emphasized: false },
+                 { type: #FOR_ACTION, dataAction: 'reverseCurrencyClearing', label: 'GÇ Ters Kayıt', emphasized: false }]
+  @UI.identification: [{ position: 10, qualifier: 'GeneralInfo' },
+                       { type: #FOR_ACTION, dataAction: 'currencyClearing', label: 'Geri Çekme', emphasized: true },
+                       { type: #FOR_ACTION, dataAction: 'reverseXRDifference', label: 'Ters Kayıt', emphasized: false },
+                       { type: #FOR_ACTION, dataAction: 'reverseCurrencyClearing', label: 'GÇ Ters Kayıt', emphasized: false }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'ZFI_I_ACCDOCTYPE_VH', element: 'AccountingDocumentType' }
+  }]
+  @UI.textArrangement: #TEXT_LAST
+  AccountingDocumentType;
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 50, qualifier: 'GeneralInfo' }]
+  DocumentDate;
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 60, qualifier: 'GeneralInfo' }]
+  PostingDate;
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40, qualifier: 'GeneralInfo' }]
+  FiscalPeriod;
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 20, qualifier: 'GeneralInfo' }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'ZFI_I_COMPANYCODE_VH', element: 'CompanyCode' }
+  }]
+  @UI.textArrangement: #TEXT_LAST
+  CompanyCode;
+  @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 30, qualifier: 'GeneralInfo' }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'I_CurrencyStdVH', element: 'Currency' }
+  }]
+  @UI.textArrangement: #TEXT_LAST
+  TransactionCurrency;
+  @UI.lineItem: [{ position: 70 }]
+  @UI.identification: [{ position: 70, qualifier: 'GeneralInfo' }]
+  DocumentReferenceID;
+  @UI.lineItem: [{ position: 80 }]
+  @UI.identification: [{ position: 80, qualifier: 'GeneralInfo' }]
+  AccountingDocumentHeaderText;
+  @UI.lineItem: [{ position: 90 }]
+  @UI.fieldGroup: [{ hidden: true }]
+  FiscalYear;
+  @UI.lineItem: [{ position: 100 }]
+  @UI.fieldGroup: [{ position: 100, qualifier: 'DocumentInfo', hidden: #(NoAccountingDocument) }]
+  AccountingDocument;
+  @UI.lineItem: [{ position: 110 }]
+  @UI.fieldGroup: [{ hidden: true }]
+  ClearingFiscalYear;
+  @UI.lineItem: [{ position: 120 }]
+  @UI.fieldGroup: [{ position: 120, qualifier: 'DocumentInfo', hidden: #(NoCurrencyClearingDocument) }]
+  ClearingAccountingDocument;
+  @UI.lineItem: [{ position: 130 }]
+  @UI.fieldGroup: [{ hidden: true }]
+  CurrencyClearingFiscalYear;
+  @UI.lineItem: [{ position: 140 }]
+  @UI.fieldGroup: [{ position: 140, qualifier: 'DocumentInfo', hidden: #(NoCurrencyClearingDocument) }]
+  CurrencyClearingDocument;
+  @UI.lineItem: [{ position: 150 }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'I_Customer_VH', element: 'Customer' }
+  }]
+  Customer;
+  @UI.lineItem: [{ position: 160 }]
+  @Consumption.valueHelpDefinition: [{
+    entity: { name:'I_Supplier_VH', element: 'Supplier' }
+  }]
+  Supplier;
+  @UI.lineItem: [{ position: 170, criticality: 'TransactionStatusCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  @UI.textArrangement: #TEXT_ONLY
+  TransactionStatus;
+  @UI.hidden: false
+  Disabled;
+  @UI.hidden: true
+  TransactionStatusCriticality;
+  @UI.hidden: true
+  NoAccountingDocument;
+  @UI.hidden: true
+  NoCurrencyClearingDocument;
+  @UI.lineItem: [{ hidden: true }]
+  AccountingDocumentFormatted;
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  LocalLastChangedAt;
+  @UI.hidden: true
+  _AccountingDocumentType;
+  @UI.hidden: true
+  _CompanyCode;
+  @UI.hidden: true
+  _Currency;
+  @UI.hidden: false
+  _Item;
+  @UI.hidden: false
+  _TransactionStatusVH;
+}
